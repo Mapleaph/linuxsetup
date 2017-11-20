@@ -29,7 +29,7 @@ $ chsh -s $(which zsh)
 
 ``` bash
 $ sudo apt-get install zsh-syntax-highlighting
-$ echo "source/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+$ echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 ```
 
 ### powerling-status
@@ -67,7 +67,7 @@ Go to preferences, select **Source Code Pro for powerline Regular**.
 
 ``` bash
 $ sudo apt-get install emacs
-$ git clone https://github.com/syl20bnr/spacemacs~/.emacs.d
+$ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ```
 
 ### Edit .spacemacs to change repository url
@@ -92,11 +92,12 @@ $ emacs --insecure
 
 ### Change font
 
-Change "Source Code Pro" to "Source Code Pro for Powerline" in ~/.spacemacs.
+Change "Source Code Pro" to "Source Code Pro for powerline" in ~/.spacemacs.
 
 ## pyenv
 
 ``` bash
+$ sudo apt-get install curl
 $ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer| bash
 ```
 
