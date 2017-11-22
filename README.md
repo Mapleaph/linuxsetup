@@ -1,9 +1,12 @@
-# Ubuntu Setup
+# Linux Setup
 
 ## Essentials
 
 ``` bash
-$ sudo apt-get install git vim build-essential libncurses-dev libgl1-mesa-dev openssh-server
+# Ubuntu
+$ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server
+# Fedora
+$ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh-server redhat-rpm-config
 ```
 
 ### vim
@@ -12,15 +15,37 @@ $ sudo apt-get install git vim build-essential libncurses-dev libgl1-mesa-dev op
 $ git clone https://github.com/mapleaph/vim
 $ cp vim/vimrc ~/.vimrc
 $ cd ../
-$ rm -r vim/
+$ rm -r ./vim/
 ```
 
-## Zsh
+### tmux
+
+```bash
+$ git clone https://github.com/mapleaph/tmux
+$ cp tmux/tmux.conf ~/.tmux.conf
+$ cd ../
+$ rm -r ./tmux/
+```
+
+### other packages
+
+```bash
+# ubuntu
+$ sudo apt-get install tig progress screenfetch
+# fedora
+$ sudo yum install tig progress screenfetch
+```
+
+## zsh
 
 ### oh-my-zsh
 
 ``` bash
+# ubuntu
 $ sudo apt-get install zsh
+# fedora
+$ sudo yum install zsh util-linux-user
+
 $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 $ chsh -s $(which zsh)
 ```
@@ -28,25 +53,32 @@ $ chsh -s $(which zsh)
 ### zsh-syntax-highlighting plugin
 
 ``` bash
+# ubuntu
 $ sudo apt-get install zsh-syntax-highlighting
-$ echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+# fedora
+$ sudo yum install zsh-syntax-highlighting
+
+$ echo "source/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 ```
 
-### powerling-status
+### powerline-status
 
 #### pip
 
 ``` bash
+# ubuntu
 $ sudo apt-get install python-pip python-dev
+# fedora
+$ sudo yum install python-pip python-devel python3-devel
+
 $ pip install --upgrade pip
+$ echo "export PATH=\"\$HOME/.local/bin/:\$PATH\"" >> ~/.zshrc
 ```
 
 #### powerline-status
 
 ``` bash
 $ pip install --user powerline-status
-# or
-$ sudo pip install powerline-status
 ```
 
 #### powerline-fonts
@@ -55,6 +87,14 @@ $ sudo pip install powerline-status
 $ git clone https://github.com/powerline/fonts.git --depth=1
 $ cd fonts/
 $ ./install.sh
+$ cd ../
+$ rm -r ./fonts
+```
+
+#### other packages
+
+```bash
+$ pip install --user howdoi magic-wormhole
 ```
 
 #### Terminal/Terminator
@@ -66,8 +106,12 @@ Go to preferences, select **Source Code Pro for powerline Regular**.
 ### Install emacs (Requires emacs > 24.4)
 
 ``` bash
+# ubuntu
 $ sudo apt-get install emacs
-$ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+# fedora
+$ sudo yum install emacs
+
+$ git clone https://github.com/syl20bnr/spacemacs~/.emacs.d
 ```
 
 ### Edit .spacemacs to change repository url
@@ -97,23 +141,48 @@ Change "Source Code Pro" to "Source Code Pro for powerline" in ~/.spacemacs.
 ## pyenv
 
 ``` bash
+# ubuntu
 $ sudo apt-get install curl
+# fedora
+$ sudo yum install curl
+
 $ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer| bash
+$ echo "export PATH=\"\$HOME/.pyenv/bin/:\$PATH\"" >> ~/.zshrc
+$ echo "eval \"\$(pyenv init -)\"" >> ~/.zshrc
+$ echo "eval \"\$(pyenv virtualenv-init -)\"" >> ~/.zshrc
 ```
 
-Before install python3, openssl library should be installed:
+Before install python3, openssl, bzip2, readline, sqlite3 libraries should be installed:
 
 ``` bash
-$ sudo apt-get install libssl-dev
+# ubuntu
+$ sudo apt-get install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+# fedora
+$ sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
 ```
 
-bz2, readline, sqlite3 libraries should also be installed:
+### python3
 
-``` bash
-$ sudo apt-get install libbz2-dev libreadline-dev libsqlite3-dev
+```bash
+$ pyenv install 3.6.3
 ```
 
-## Gnome Software Center
+## nodejs
+
+### npm
+
+```bash
+# fedora
+$ sudo yum install npm
+```
+
+### packages
+
+```bash
+$ sudo npm install -g vtop rg
+```
+
+## Ubuntu Gnome Software Center
 
 Use gnome software center to install applications like pycharm-community and vscode will cause "snapd status code 400" error.
 
@@ -126,6 +195,9 @@ $ sudo snap install vscode --classic
 ## Terminal Color Theme
 
 ``` bash
+# ubuntu
 $ sudo apt-get install dconf-cli
+
 $ wget -O gogh https://git.io/vQgMr &&chmod +x gogh && ./gogh && rm gogh
 ```
+
