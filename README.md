@@ -3,9 +3,9 @@
 ## Essentials
 
 ``` bash
-# Ubuntu
+# ubuntu
 $ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server
-# Fedora
+# fedora
 $ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh-server redhat-rpm-config
 ```
 
@@ -14,8 +14,7 @@ $ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh
 ``` bash
 $ git clone https://github.com/mapleaph/vim
 $ cp vim/vimrc ~/.vimrc
-$ cd ../
-$ rm -r ./vim/
+$ rm -rf ./vim/
 ```
 
 ### tmux
@@ -23,8 +22,7 @@ $ rm -r ./vim/
 ```bash
 $ git clone https://github.com/mapleaph/tmux
 $ cp tmux/tmux.conf ~/.tmux.conf
-$ cd ../
-$ rm -r ./tmux/
+$ rm -rf ./tmux/
 ```
 
 ### other packages
@@ -47,6 +45,7 @@ $ sudo apt-get install zsh
 $ sudo yum install zsh util-linux-user
 
 $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+$ exit
 $ chsh -s $(which zsh)
 ```
 
@@ -58,7 +57,7 @@ $ sudo apt-get install zsh-syntax-highlighting
 # fedora
 $ sudo yum install zsh-syntax-highlighting
 
-$ echo "source/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+$ echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
 ```
 
 ### powerline-status
@@ -88,7 +87,9 @@ $ git clone https://github.com/powerline/fonts.git --depth=1
 $ cd fonts/
 $ ./install.sh
 $ cd ../
-$ rm -r ./fonts
+$ rm -rf ./fonts
+
+$ sed -i "s/robbyrussell/agnoster/g" ~/.zshrc
 ```
 
 #### other packages
@@ -101,7 +102,7 @@ $ pip install --user howdoi magic-wormhole
 
 Go to preferences, select **Source Code Pro for powerline Regular**.
 
- ## Spacemacs
+## Spacemacs
 
 ### Install emacs (Requires emacs > 24.4)
 
@@ -146,7 +147,7 @@ $ sudo apt-get install curl
 # fedora
 $ sudo yum install curl
 
-$ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer| bash
+$ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 $ echo "export PATH=\"\$HOME/.pyenv/bin/:\$PATH\"" >> ~/.zshrc
 $ echo "eval \"\$(pyenv init -)\"" >> ~/.zshrc
 $ echo "eval \"\$(pyenv virtualenv-init -)\"" >> ~/.zshrc
@@ -161,17 +162,13 @@ $ sudo apt-get install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 $ sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
 ```
 
-### python3
-
-```bash
-$ pyenv install 3.6.3
-```
-
 ## nodejs
 
 ### npm
 
 ```bash
+# ubuntu
+$ sudo apt-get install npm
 # fedora
 $ sudo yum install npm
 ```
