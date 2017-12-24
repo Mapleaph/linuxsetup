@@ -5,6 +5,15 @@
 ``` bash
 # ubuntu
 $ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server
+## grub-customizer
+$ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+$ sudo apt-get update
+$ sudo apt-get install grub-customizer
+## variety wallpaper
+$ sudo add-apt-repository ppa:peterlevi/ppa
+$ sudo apt-get update
+$ sudo apt-get install variety
+
 # fedora
 $ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh-server redhat-rpm-config
 ```
@@ -12,9 +21,10 @@ $ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh
 ### vim
 
 ``` bash
-$ git clone https://github.com/mapleaph/vim
-$ cp vim/vimrc ~/.vimrc
-$ rm -rf ./vim/
+$ git clone https://github.com/mapleaph/vim ~/.vim
+$ ln -s ~/.vim/vimrc ~/.vimrc
+$ cd ~/.vim
+$ git submodule update --init --recursive
 ```
 
 ### tmux
