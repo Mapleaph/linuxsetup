@@ -105,7 +105,7 @@ $ sed -i "s/robbyrussell/agnoster/g" ~/.zshrc
 #### other packages
 
 ```bash
-$ pip install --user howdoi magic-wormhole
+$ pip install --user howdoi magic-wormhole ici ydcv
 ```
 
 #### Terminal/Terminator
