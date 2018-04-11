@@ -4,7 +4,7 @@
 
 ``` bash
 # ubuntu
-$ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server
+$ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server isc-dhcp-server tftpd-hpa vsftpd
 ## grub-customizer
 $ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 $ sudo apt-get update
@@ -22,17 +22,20 @@ $ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh
 
 ``` bash
 $ git clone https://github.com/mapleaph/vim ~/.vim
-$ ln -s ~/.vim/vimrc ~/.vimrc
-$ cd ~/.vim
+$ ln -s ~/.vim/vimrc ~/.vimrc; cd ~/.vim
 $ git submodule update --init --recursive
+
+# YouCompleteMe
+$ cd bundle/YouCompleteMe
+$ sudo apt-get install cmake
+$ ./install.py --clang-completer
 ```
 
 ### tmux
 
 ```bash
 $ git clone https://github.com/mapleaph/tmux
-$ cp tmux/tmux.conf ~/.tmux.conf
-$ rm -rf ./tmux/
+$ cp tmux/tmux.conf ~/.tmux.conf; rm -rf ./tmux/
 ```
 
 ### other packages
@@ -94,11 +97,7 @@ $ pip install --user powerline-status
 
 ``` bash
 $ git clone https://github.com/powerline/fonts.git --depth=1
-$ cd fonts/
-$ ./install.sh
-$ cd ../
-$ rm -rf ./fonts
-
+$ cd fonts/; ./install.sh; cd ../; rm -rf ./fonts
 $ sed -i "s/robbyrussell/agnoster/g" ~/.zshrc
 ```
 
