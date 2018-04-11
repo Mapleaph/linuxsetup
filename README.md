@@ -27,7 +27,7 @@ $ git submodule update --init --recursive
 
 # YouCompleteMe
 $ cd bundle/YouCompleteMe
-$ sudo apt-get install cmake
+$ sudo apt-get install cmake ctags
 $ ./install.py --clang-completer
 ```
 
