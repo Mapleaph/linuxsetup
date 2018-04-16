@@ -4,7 +4,7 @@
 
 ``` bash
 # ubuntu
-$ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server isc-dhcp-server tftpd-hpa vsftpd
+$ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server isc-dhcp-server tftpd-hpa vsftpd ibus-sunpinyin libtool
 ## grub-customizer
 $ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 $ sudo apt-get update
@@ -177,7 +177,8 @@ $ sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
 
 ```bash
 # ubuntu
-$ sudo apt-get install npm
+# add nodejs-legacy now for ubuntu16.04.4
+$ sudo apt-get install npm nodejs-legacy
 # fedora
 $ sudo yum install npm
 ```
