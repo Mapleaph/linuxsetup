@@ -17,7 +17,53 @@ $ sudo apt-get install variety
 # fedora
 $ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh-server redhat-rpm-config
 ```
-
+### vsftpd
+Edit file /etc/vsftpd.conf
+``` bash
+# uncomment these lines
+write_enable=YES
+# enable the following two lines will keep users in the chroot_list_file in the chroot_jail
+# that is being kept in their own home directory
+chroot_list_enable=YES
+chroot_list_file=/etc/vsftpd.chroot_list
+# add these lines
+user_sub_token=$USER
+local_root=/home/$USER/ftp
+```
+Create new user called ftpuser
+``` bash
+$ sudo adduser ftpuser
+$ sudo mkdir /home/ftpuser/ftp
+$ sudo chown nobody:nogroup /home/ftpuser/ftp
+# ftpuser should be read-only, otherwise
+# "500 OOPS: vsftpd: refusing to run with writable root inside chroot ()"
+# error will be prompt when connecting
+$ sudo chmod -R a-w /home/ftpuser/
+$ sudo mkdir /home/ftpuser/ftp/files
+$ sudo chown ftpuser:ftpuser /home/ftpuser/ftp/files
+```
+Create a new file /etc/vsftpd.chroot_file
+``` bash
+ftpuser
+```
+Restart service
+``` bash
+$ sudo systemctl restart vsftpd.service
+```
+### tftpd-hpa
+Change default repository permission
+``` bash
+$ sudo chmod -R 777 /var/lib/tftpboot
+```
+Edit file /etc/default/tftpd-hpa
+``` bash
+# add -c to enable file creation
+TFTP_OPTIONS="--secure -c"
+```
+Restart service
+``` bash
+$ sudo systemctl restart tftpd-hpa.service
+```
 ### vim
 
 ``` bash
