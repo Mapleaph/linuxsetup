@@ -4,7 +4,7 @@
 
 ``` bash
 # ubuntu
-$ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server isc-dhcp-server tftpd-hpa vsftpd ibus-sunpinyin libtool
+$ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server isc-dhcp-server tftpd-hpa vsftpd ibus-sunpinyin libtool devmem2
 ## grub-customizer
 $ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 $ sudo apt-get update
@@ -49,6 +49,8 @@ ftpuser
 Restart service
 ``` bash
 $ sudo systemctl restart vsftpd.service
+or
+$ sudo service vsftpd restart
 ```
 ### tftpd-hpa
 Change default repository permission
@@ -63,6 +65,8 @@ TFTP_OPTIONS="--secure -c"
 Restart service
 ``` bash
 $ sudo systemctl restart tftpd-hpa.service
+or
+$ sudo service tftpd-hpa restart
 ```
 ### vim
 
@@ -225,6 +229,7 @@ $ sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
 # ubuntu
 # add nodejs-legacy now for ubuntu16.04.4
 $ sudo apt-get install npm nodejs-legacy
+$ sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
 # fedora
 $ sudo yum install npm
 ```
@@ -232,7 +237,7 @@ $ sudo yum install npm
 ### packages
 
 ```bash
-$ sudo npm install -g vtop rg
+$ sudo cnpm install -g vtop rg
 ```
 
 ## Ubuntu Gnome Software Center
