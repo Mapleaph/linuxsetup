@@ -4,15 +4,15 @@
 
 ``` bash
 # ubuntu
-$ sudo apt-get install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server isc-dhcp-server tftpd-hpa vsftpd ibus-sunpinyin libtool devmem2
+$ sudo apt install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server isc-dhcp-server tftpd-hpa vsftpd ibus-sunpinyin libtool devmem2
 ## grub-customizer
 $ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
-$ sudo apt-get update
-$ sudo apt-get install grub-customizer
+$ sudo apt update
+$ sudo apt install grub-customizer
 ## variety wallpaper
 $ sudo add-apt-repository ppa:peterlevi/ppa
-$ sudo apt-get update
-$ sudo apt-get install variety
+$ sudo apt update
+$ sudo apt install variety
 
 # fedora
 $ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh-server redhat-rpm-config
@@ -77,7 +77,7 @@ $ git submodule update --init --recursive
 
 # YouCompleteMe
 $ cd bundle/YouCompleteMe
-$ sudo apt-get install cmake ctags
+$ sudo apt install cmake ctags
 $ ./install.py --clang-completer
 ```
 
@@ -92,7 +92,7 @@ $ cp tmux/tmux.conf ~/.tmux.conf; rm -rf ./tmux/
 
 ```bash
 # ubuntu
-$ sudo apt-get install tig progress screenfetch
+$ sudo apt install tig progress screenfetch
 # fedora
 $ sudo yum install tig progress screenfetch
 ```
@@ -103,7 +103,7 @@ $ sudo yum install tig progress screenfetch
 
 ``` bash
 # ubuntu
-$ sudo apt-get install zsh
+$ sudo apt install zsh
 # fedora
 $ sudo yum install zsh util-linux-user
 
@@ -116,7 +116,7 @@ $ chsh -s $(which zsh)
 
 ``` bash
 # ubuntu
-$ sudo apt-get install zsh-syntax-highlighting
+$ sudo apt install zsh-syntax-highlighting
 # fedora
 $ sudo yum install zsh-syntax-highlighting
 
@@ -129,7 +129,7 @@ $ echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >
 
 ``` bash
 # ubuntu
-$ sudo apt-get install python-pip python-dev
+$ sudo apt install python-pip python-dev
 # fedora
 $ sudo yum install python-pip python-devel python3-devel
 
@@ -167,7 +167,7 @@ Go to preferences, select **Source Code Pro for powerline Regular**.
 
 ``` bash
 # ubuntu
-$ sudo apt-get install emacs
+$ sudo apt install emacs
 # fedora
 $ sudo yum install emacs
 
@@ -202,7 +202,7 @@ Change "Source Code Pro" to "Source Code Pro for powerline" in ~/.spacemacs.
 
 ``` bash
 # ubuntu
-$ sudo apt-get install curl
+$ sudo apt install curl
 # fedora
 $ sudo yum install curl
 
@@ -216,7 +216,7 @@ Before install python3, openssl, bzip2, readline, sqlite3 libraries should be in
 
 ``` bash
 # ubuntu
-$ sudo apt-get install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+$ sudo apt install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 # fedora
 $ sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
 ```
@@ -228,7 +228,7 @@ $ sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
 ```bash
 # ubuntu
 # add nodejs-legacy now for ubuntu16.04.4
-$ sudo apt-get install npm nodejs-legacy
+$ sudo apt install npm nodejs-legacy
 $ sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
 # fedora
 $ sudo yum install npm
@@ -254,7 +254,7 @@ $ sudo snap install vscode --classic
 
 ``` bash
 # ubuntu
-$ sudo apt-get install dconf-cli
+$ sudo apt install dconf-cli
 
 $ wget -O gogh https://git.io/vQgMr &&chmod +x gogh && ./gogh && rm gogh
 ```
