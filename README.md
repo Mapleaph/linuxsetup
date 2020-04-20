@@ -166,8 +166,8 @@ Go to preferences, select **Source Code Pro for powerline Regular**.
 ### Install emacs (Requires emacs > 24.4)
 
 ``` bash
-# ubuntu
-$ sudo apt install emacs
+# ubuntu 18.04 install emacs27
+$ sudo snap install emacs --beta --classic
 # fedora
 $ sudo yum install emacs
 
@@ -178,11 +178,10 @@ $ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 ``` bash
 (defun dotspacemacs/user-init ()
-	(setq-default
-		configuration-layer-elpa-archives
-		(("melpa-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-		("gnu-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-		("org-cn" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+  (setq configuration-layer--elpa-archives
+      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 )
 ```
 
