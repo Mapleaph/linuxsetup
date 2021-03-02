@@ -4,7 +4,7 @@
 
 ``` bash
 # ubuntu
-$ sudo apt install git vim tmux build-essential libncurses-dev libgl1-mesa-dev openssh-server isc-dhcp-server tftpd-hpa vsftpd ibus-sunpinyin libtool devmem2
+$ sudo apt install git vim automake autoconf exuberant-ctags cmake gcc g++ tmux build-essential libncurses-dev libgl1-mesa-dev isc-dhcp-server tftpd-hpa vsftpd libtool devmem2 qt5-default qtcreator libqt5serialport5-dev libvte-dev libgtk2.0-dev gnome-tweak-tool psensor fwupd snap telegram-desktop fcitx fcitx-pinyin libpam-fprintd axel busybox xclip minicom python3 python3-dev python3-pip python python-dev
 ## grub-customizer
 $ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 $ sudo apt update
@@ -12,13 +12,14 @@ $ sudo apt install grub-customizer
 ## variety wallpaper
 $ sudo add-apt-repository ppa:peterlevi/ppa
 $ sudo apt update
+## For newer versions of Ubuntu, there is no need to add the PPA, just install from apt source
 $ sudo apt install variety
 
 # fedora
 $ sudo yum install git vim tmux rpm-build ncurses-devel mesa-libGL-devel openssh-server redhat-rpm-config
 ```
 ### vsftpd
-Edit file /etc/vsftpd.conf
+Edit file `/etc/vsftpd.conf`
 ``` bash
 # uncomment these lines
 write_enable=YES
@@ -30,71 +31,86 @@ chroot_list_file=/etc/vsftpd.chroot_list
 user_sub_token=$USER
 local_root=/home/$USER/ftp
 ```
-Create new user called ftpuser
+Create new user called `ftpuser`
 ``` bash
-$ sudo adduser ftpuser
-$ sudo mkdir /home/ftpuser/ftp
-$ sudo chown nobody:nogroup /home/ftpuser/ftp
+sudo useradd -m ftpuser
+sudo mkdir /home/ftpuser/ftp
+sudo chown nobody:nogroup /home/ftpuser/ftp
 # ftpuser should be read-only, otherwise
 # "500 OOPS: vsftpd: refusing to run with writable root inside chroot ()"
 # error will be prompt when connecting
-$ sudo chmod -R a-w /home/ftpuser/
-$ sudo mkdir /home/ftpuser/ftp/files
-$ sudo chown ftpuser:ftpuser /home/ftpuser/ftp/files
+sudo chmod -R a-w /home/ftpuser/
+# Temperarily remove these two lines
+#$ sudo mkdir /home/ftpuser/ftp/files
+#$ sudo chown ftpuser:ftpuser /home/ftpuser/ftp/files
 ```
-Create a new file /etc/vsftpd.chroot_file
+Create a new file `/etc/vsftpd.chroot_list`
 ``` bash
 ftpuser
 ```
 Restart service
 ``` bash
-$ sudo systemctl restart vsftpd.service
-or
-$ sudo service vsftpd restart
+sudo systemctl restart vsftpd.service
+# or
+sudo service vsftpd restart
 ```
 ### tftpd-hpa
+
+Check file `/etc/default/tftpd-hpa` 
+
+```bash
+# /etc/default/tftpd-hpa
+
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/srv/tftp"
+TFTP_ADDRESS=":69"
+TFTP_OPTIONS="--secure"
+```
+
 Change default repository permission
 ``` bash
-$ sudo chmod -R 777 /var/lib/tftpboot
+sudo chmod -R 777 /srv/tftp
 ```
-Edit file /etc/default/tftpd-hpa
+The `TFTP_DIRECTORY` is `/var/lib/tftpboot` for older versions of Ubuntu.
+
+Add `-c` to `TFTP_OPTIONS="--secure"` to enable file creation:
+
 ``` bash
-# add -c to enable file creation
 TFTP_OPTIONS="--secure -c"
 ```
 Restart service
 ``` bash
-$ sudo systemctl restart tftpd-hpa.service
-or
-$ sudo service tftpd-hpa restart
+sudo systemctl restart tftpd-hpa.service
+# or
+sudo service tftpd-hpa restart
 ```
 ### vim
 
 ``` bash
-$ git clone https://github.com/mapleaph/vim ~/.vim
-$ ln -s ~/.vim/vimrc ~/.vimrc; cd ~/.vim
-$ git submodule update --init --recursive
+git clone https://github.com/mapleaph/vim ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc; cd ~/.vim
+git submodule update --init --recursive
 
 # YouCompleteMe
-$ cd bundle/YouCompleteMe
-$ sudo apt install cmake ctags
-$ ./install.py --clang-completer
+cd bundle/YouCompleteMe
+sudo apt install cmake ctags
+./install.py --clang-completer
 ```
 
 ### tmux
 
 ```bash
-$ git clone https://github.com/mapleaph/tmux
-$ cp tmux/tmux.conf ~/.tmux.conf; rm -rf ./tmux/
+git clone https://github.com/mapleaph/tmux
+cp tmux/tmux.conf ~/.tmux.conf; rm -rf ./tmux/
 ```
 
 ### other packages
 
 ```bash
 # ubuntu
-$ sudo apt install tig progress screenfetch
+sudo apt install tig progress screenfetch
 # fedora
-$ sudo yum install tig progress screenfetch
+sudo yum install tig progress screenfetch
 ```
 
 ## zsh
@@ -103,24 +119,23 @@ $ sudo yum install tig progress screenfetch
 
 ``` bash
 # ubuntu
-$ sudo apt install zsh
+sudo apt install zsh
 # fedora
-$ sudo yum install zsh util-linux-user
+sudo yum install zsh util-linux-user
 
-$ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-$ exit
-$ chsh -s $(which zsh)
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 ### zsh-syntax-highlighting plugin
 
 ``` bash
 # ubuntu
-$ sudo apt install zsh-syntax-highlighting
+sudo apt install zsh-syntax-highlighting
 # fedora
-$ sudo yum install zsh-syntax-highlighting
+sudo yum install zsh-syntax-highlighting
 
-$ echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+source ~/.zshrc
 ```
 
 ### powerline-status
@@ -128,33 +143,28 @@ $ echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >
 #### pip
 
 ``` bash
-# ubuntu
-$ sudo apt install python-pip python-dev
-# fedora
-$ sudo yum install python-pip python-devel python3-devel
-
-$ pip install --upgrade pip
-$ echo "export PATH=\"\$HOME/.local/bin/:\$PATH\"" >> ~/.zshrc
+sudo -H pip install -U pip
+echo "export PATH=\"\$HOME/.local/bin/:\$PATH\"" >> ~/.zshrc
 ```
 
 #### powerline-status
 
 ``` bash
-$ pip install --user powerline-status
+pip install --user powerline-status
 ```
 
 #### powerline-fonts
 
 ``` bash
-$ git clone https://github.com/powerline/fonts.git --depth=1
-$ cd fonts/; ./install.sh; cd ../; rm -rf ./fonts
-$ sed -i "s/robbyrussell/agnoster/g" ~/.zshrc
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts/; ./install.sh; cd ../; rm -rf ./fonts
+sed -i "s/robbyrussell/agnoster/g" ~/.zshrc
 ```
 
 #### other packages
 
 ```bash
-$ pip install --user howdoi magic-wormhole ici ydcv
+pip install --user howdoi magic-wormhole ici ydcv
 ```
 
 #### Terminal/Terminator
@@ -167,11 +177,11 @@ Go to preferences, select **Source Code Pro for powerline Regular**.
 
 ``` bash
 # ubuntu 18.04 install emacs27
-$ sudo snap install emacs --beta --classic
+sudo snap install emacs --beta --classic
 # fedora
-$ sudo yum install emacs
+sudo yum install emacs
 
-$ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ```
 
 ### Edit .spacemacs to change repository url
@@ -190,7 +200,7 @@ $ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 Edit .spacemacs file, try to change "dotspacemacs-elpa-timeout 5" to "30", then invoke emacs like this once.
 
 ``` bash
-$ emacs --insecure
+emacs --insecure
 ```
 
 ### Change font
@@ -201,23 +211,23 @@ Change "Source Code Pro" to "Source Code Pro for powerline" in ~/.spacemacs.
 
 ``` bash
 # ubuntu
-$ sudo apt install curl
+sudo apt install curl
 # fedora
-$ sudo yum install curl
+sudo yum install curl
 
-$ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-$ echo "export PATH=\"\$HOME/.pyenv/bin/:\$PATH\"" >> ~/.zshrc
-$ echo "eval \"\$(pyenv init -)\"" >> ~/.zshrc
-$ echo "eval \"\$(pyenv virtualenv-init -)\"" >> ~/.zshrc
+curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+echo "export PATH=\"\$HOME/.pyenv/bin/:\$PATH\"" >> ~/.zshrc
+echo "eval \"\$(pyenv init -)\"" >> ~/.zshrc
+echo "eval \"\$(pyenv virtualenv-init -)\"" >> ~/.zshrc
 ```
 
 Before install python3, openssl, bzip2, readline, sqlite3 libraries should be installed:
 
 ``` bash
 # ubuntu
-$ sudo apt install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+sudo apt install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 # fedora
-$ sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
+sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
 ```
 
 ## nodejs
@@ -227,16 +237,16 @@ $ sudo yum install openssl-devel bzip2-devel readline-devel sqlite-devel
 ```bash
 # ubuntu
 # add nodejs-legacy now for ubuntu16.04.4
-$ sudo apt install npm nodejs-legacy
-$ sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
+sudo apt install npm nodejs-legacy
+sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
 # fedora
-$ sudo yum install npm
+sudo yum install npm
 ```
 
 ### packages
 
 ```bash
-$ sudo cnpm install -g vtop rg
+sudo cnpm install -g vtop rg
 ```
 
 ## Ubuntu Gnome Software Center
@@ -246,15 +256,17 @@ Use gnome software center to install applications like pycharm-community and vsc
 Use snap command to install these applications with classic option.
 
 ``` bash
-$ sudo snap install vscode --classic
+sudo snap install notion-snap typora snap-store-proxy clion cawbird
+sudo snap install --classic p3x-onenote
+sudo snap install --edge 1password
 ```
 
 ## Terminal Color Theme
 
 ``` bash
 # ubuntu
-$ sudo apt install dconf-cli
+sudo apt install dconf-cli
 
-$ wget -O gogh https://git.io/vQgMr &&chmod +x gogh && ./gogh && rm gogh
+wget -O gogh https://git.io/vQgMr &&chmod +x gogh && ./gogh && rm gogh
 ```
 
