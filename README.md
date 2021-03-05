@@ -4,7 +4,7 @@
 
 ``` bash
 # ubuntu
-$ sudo apt install git vim automake autoconf exuberant-ctags cmake gcc g++ tmux build-essential libncurses-dev libgl1-mesa-dev isc-dhcp-server tftpd-hpa vsftpd libtool devmem2 qt5-default qtcreator libqt5serialport5-dev libvte-dev libgtk2.0-dev gnome-tweak-tool psensor fwupd snap telegram-desktop fcitx fcitx-pinyin libpam-fprintd axel busybox xclip minicom python3 python3-dev python3-pip python python-dev
+$ sudo apt install git vim automake autoconf exuberant-ctags cmake gcc g++ tmux build-essential libncurses-dev libgl1-mesa-dev isc-dhcp-server tftpd-hpa vsftpd libtool devmem2 qt5-default qtcreator libqt5serialport5-dev libvte-dev libgtk2.0-dev gnome-tweak-tool psensor fwupd telegram-desktop fcitx fcitx-pinyin libpam-fprintd axel busybox xclip minicom python3 python3-dev python3-pip python python-dev
 ## grub-customizer
 $ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 $ sudo apt update
@@ -256,8 +256,8 @@ Use gnome software center to install applications like pycharm-community and vsc
 Use snap command to install these applications with classic option.
 
 ``` bash
-sudo snap install notion-snap typora snap-store-proxy clion cawbird
-sudo snap install --classic p3x-onenote
+sudo snap install notion-snap typora p3x-onenote cawbird
+sudo snap install --classic clion
 sudo snap install --edge 1password
 ```
 
