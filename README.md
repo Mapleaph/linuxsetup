@@ -3,8 +3,10 @@
 ## Essentials
 
 ``` bash
-# ubuntu
-$ sudo apt install git vim automake autoconf exuberant-ctags cmake gcc g++ tmux build-essential libncurses-dev libgl1-mesa-dev isc-dhcp-server tftpd-hpa vsftpd libtool devmem2 qt5-default qtcreator libqt5serialport5-dev libvte-dev libgtk2.0-dev gnome-tweak-tool psensor fwupd telegram-desktop fcitx fcitx-pinyin libpam-fprintd axel busybox xclip minicom python3 python3-dev python3-pip python python-dev
+# ubuntu (essential)
+$ sudo apt install curl git vim automake autoconf exuberant-ctags cmake gcc g++ tmux build-essential libncurses-dev libgl1-mesa-dev isc-dhcp-server tftpd-hpa vsftpd libtool devmem2 qt5-default qtcreator libqt5serialport5-dev qtdeclarative5-dev libvte-dev libgtk2.0-dev python3 python3-dev python3-pip python python-dev
+# ubuntu (plus)
+$ sudo apt install gnome-tweak-tool psensor fwupd telegram-desktop fcitx fcitx-pinyin libpam-fprintd axel busybox xclip
 ## grub-customizer
 $ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 $ sudo apt update
