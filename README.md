@@ -86,24 +86,31 @@ sudo systemctl restart tftpd-hpa.service
 # or
 sudo service tftpd-hpa restart
 ```
-### vim
+### neovim
 
 ``` bash
-git clone https://github.com/mapleaph/vim ~/.vim
-ln -s ~/.vim/vimrc ~/.vimrc; cd ~/.vim
-git submodule update --init --recursive
+# Installation
+## Ubuntu 20.04
+sudo apt install neovim
+## Ubuntu 18.04
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt update
+sudo apt install neovim
 
-# YouCompleteMe
-cd bundle/YouCompleteMe
-sudo apt install cmake ctags
-./install.py --clang-completer
+# vim-plug
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+git clone https://github.com/mapleaph/nvim ~/.config/
+# Open nvim and use :PlugInstall to install all plugins
+
 ```
 
 ### tmux
 
 ```bash
-git clone https://github.com/mapleaph/tmux
-cp tmux/tmux.conf ~/.tmux.conf; rm -rf ./tmux/
+git clone https://github.com/mapleaph/tmux ~/.tmuxgit
+ln -s ~/.tmuxgit/tmux.conf ~/.tmux.conf
 ```
 
 ### other packages
@@ -267,8 +274,8 @@ sudo snap install --edge 1password
 
 ``` bash
 # ubuntu
-sudo apt install dconf-cli
+sudo apt install dconf-cli uuid-runtime
 
-wget -O gogh https://git.io/vQgMr &&chmod +x gogh && ./gogh && rm gogh
+bash -c "$(wget -qO- https://git.io/vQgMr)"
 ```
 
